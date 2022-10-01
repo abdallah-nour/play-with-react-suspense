@@ -9,7 +9,6 @@ export default function Users() {
       .then((users: USER[]) => (setUsers(users), users))
       .then((users) => console.log(users));
   }, []);
-
   return (
     <div>
       {users.slice(0, 2).map((user) => (
