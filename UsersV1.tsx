@@ -3,11 +3,14 @@ import './style.css';
 
 export default function Users() {
   const [users, setUsers] = React.useState<USER[]>([]);
-  React.useEffect(() => {
+  const fetchUser = async () => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
       .then((users: USER[]) => (setUsers(users), users))
       .then((users) => console.log(users));
+  };
+  React.useEffect(() => {
+    fetchUser();
   }, []);
 
   return (

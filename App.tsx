@@ -1,11 +1,21 @@
 import * as React from 'react';
+import delay from './delay';
+import Spinner from './Spinner';
 import './style.css';
-const UsersV1 = React.lazy(() => import('./UsersV1'));
+
+// UsersV1 don't use Suspense for fetching data
+const UsersV1 = React.lazy(() => {
+  return delay(import('./UsersV1'));
+});
+// // sersV2 use Suspense data fetching
+// const UsersV2 = React.lazy(() => import('./UsersV2'));
 
 export default function App() {
   return (
     <div>
-      <UsersV1 />
+      <React.Suspense fallback={<Spinner />}>
+        <UsersV1 />
+      </React.Suspense>
     </div>
   );
 }
